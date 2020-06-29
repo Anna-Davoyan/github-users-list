@@ -1,0 +1,34 @@
+.user-list {
+    margin-top: 15px
+}
+
+.learn-more {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px
+}
+
+.add-button {
+    height: 100%
+}
+
+.avatar {
+    width: 100%
+}
+
+.user-card-login {
+    width: 61%;
+}
+
+.user-card-cancel {
+    border-left: 1px solid #ddd;
+}
+.user-card-error{
+    color: #e07575;
+    font-size: 9px
+}
+
+.add-login,.add-github{
+    margin-top: 5px;
+    width: 100%;
+}
