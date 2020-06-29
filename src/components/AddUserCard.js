@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Image, Input,Message,Form} from "semantic-ui-react";
+import {Button, Image,Form} from "semantic-ui-react";
 import userImg from '../image.jpg';
 import uuid from 'react-uuid';
 

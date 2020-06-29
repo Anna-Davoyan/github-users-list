@@ -23,7 +23,7 @@
 .user-card-cancel {
     border-left: 1px solid #ddd;
 }
-.user-card-error{
+.error{
     color: #e07575;
     font-size: 9px
 }
