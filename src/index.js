@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import UserDashboard from "./components/UserDashboard";
+import 'semantic-ui-css/semantic.min.css';
 
 
 ReactDOM.render(
