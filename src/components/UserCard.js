@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Button, Image, Icon, Input} from 'semantic-ui-react'
+import {Card, Button, Image, Icon, Input} from 'semantic-ui-react'
 
 class UserCard extends Component {
+
     state = {
         login: this.props.user.login,
         editFormOpen: false,
@@ -35,7 +36,6 @@ class UserCard extends Component {
     };
 
     handleCancelClick = () => {
-
         this.setState({editFormOpen: false, login: this.props.user.login})
     };
 
@@ -44,22 +44,24 @@ class UserCard extends Component {
         if (!user) {
             return null;
         }
-        return (
-            <div className="card">
-                <div className="image">
-                    <Image src={user.avatar_url}/>
-                </div>
 
-                <div className="content">
-                    <div className="header">
+        return (
+            <Card>
+
+                <Image src={user.avatar_url} wrapped ui={false}/>
+
+                <Card.Content>
+                    <Card.Header>
                         {!this.state.editFormOpen ? (
                             user.login
                         ) : (
                             <div className="ui action input">
-                                <Input error={this.state.login === ""}
-                                       className="user-card-login"
-                                       onChange={this.handleLoginChange}
-                                       value={this.state.login}/>
+                                <Input
+                                    error={this.state.login === ""}
+                                    className="user-card-login"
+                                    onChange={this.handleLoginChange}
+                                    value={this.state.login}
+                                />
                                 <Button
                                     icon
                                     disabled={this.state.login === ""}
@@ -77,23 +79,31 @@ class UserCard extends Component {
                                 </Button>
                             </div>
                         )}
-                    </div>
-                    <div className="description">
+                    </Card.Header>
+
+                    <Card.Description>
                         <Icon name='github' size='large' color="black"/>
                         <a target='_blank' href={user.html_url} rel="noopener noreferrer">{user.html_url}</a>
-                    </div>
-                </div>
-                <div className="extra content">
-                    <Icon name='trash alternate' color="black" onClick={this.onDeleteClick}/>
+                    </Card.Description>
+
+                </Card.Content>
+
+                <Card.Content extra>
+                    <a>
+                        <Icon name='trash alternate' color="black" onClick={this.onDeleteClick}/>
+                    </a>
                     {!this.state.editFormOpen ?
-                        (<Icon name='edit' color="black" onClick={this.handleEditClick}/>
+                        (
+                            <a>
+                                <Icon name='edit' color="black" onClick={this.handleEditClick}/>
+                            </a>
+
                         ) : ""}
-                </div>
-            </div>
+                </Card.Content>
+
+            </Card>
         )
-
     }
-
 }
 
 export default UserCard;

@@ -1,5 +1,6 @@
 import React from 'react';
 import UserCard from "./UserCard";
+import { Card } from 'semantic-ui-react'
 import ToggleableUserForm from "./ToggleableUserForm";
 
 const UserList = function (props) {
@@ -19,10 +20,10 @@ const UserList = function (props) {
     const {users} = props;
 
     return (
-        <div className='ui centered link cards'>
-            <div className="card">
+        <Card.Group centered>
+            <Card>
                 <ToggleableUserForm newUserInfo={newUserInfo}/>
-            </div>
+            </Card>
 
             {users.map(user => {
                 return <UserCard
@@ -33,7 +34,7 @@ const UserList = function (props) {
                 />
 
             })}
-        </div>
+        </Card.Group>
     )
 
 };

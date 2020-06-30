@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Image,Form} from "semantic-ui-react";
+import {Button, Image, Input, Card} from "semantic-ui-react";
 import userImg from '../image.jpg';
 import uuid from 'react-uuid';
 
@@ -25,6 +25,7 @@ class AddUserCard extends Component {
             validation: validation
         })
     };
+
     handleGitHubURL = (e) => {
         const validation = this.state.validation;
         validation.githubError = false;
@@ -33,6 +34,7 @@ class AddUserCard extends Component {
             validation: validation
         })
     };
+
     handleAvatar = (e) => {
         const validation = this.state.validation;
         validation.avatarError = false;
@@ -42,9 +44,11 @@ class AddUserCard extends Component {
             validation: validation
         })
     };
+
     onCancelAddUserCard = () => {
         this.props.onCancelAddUserCard();
     };
+
     onAddUserCard = () => {
         const validGithub = !this.state.html_url.match("^https?:\\/\\/github.com\\/[a-zA-Z0-9].*");
         const validLogo = !this.state.login;
@@ -53,7 +57,6 @@ class AddUserCard extends Component {
             avatarError: !this.state.errored,
             loginError: validLogo,
         };
-        console.log(validation.avatarError)
         if (!validation.githubError && !validation.avatarError && !validation.loginError) {
             const id = uuid();
             const user = {
@@ -69,66 +72,75 @@ class AddUserCard extends Component {
             this.setState({validation: validation})
         }
     };
+
+
     onError = () => {
         this.setState({
             errored: false,
         });
     };
 
-
     render() {
         const userCard = this.state;
         return (
-            <React.Fragment>
-                <div className="ui big image">
-                    <Image src={!userCard.errored ? userImg : userCard.avatar_url} onError={this.onError}/>
-                </div>
+            <>
+                <Image src={!userCard.errored ? userImg : userCard.avatar_url} onError={this.onError}/>
 
-                <div className="content">
-                    <div className="header ui  input">
-                        <Form>
-                            <Form.Input
+                <Card.Content>
+                    <Card.Header>
+                        <div>
+                            <Input
                                 className="avatar"
-                                error={userCard.validation.avatarError && { content: 'Please enter a valid Image URL', pointing: 'below', size:'mini'}}
-                                fluid
+                                error={userCard.validation.avatarError}
                                 placeholder='Avatar URL'
-                                id='avatar-url'
                                 value={userCard.avatar_url === userImg ? "" : userCard.avatar_url}
                                 onChange={this.handleAvatar}
+                                size='small'
                             />
-                            <Form.Input
-                                className="add-login"
-                                error={userCard.validation.loginError && { content: 'Please enter a Login', pointing: 'below',size:'mini' }}
-                                fluid
+                            <span
+                                className='error'>{(userCard.validation.avatarError) ? "Please enter a valid Image URL" : ""}
+                            </span>
+                        </div>
+
+                        <div>
+                            <Input
+                                className="input-margin-top-5"
+                                error={userCard.validation.loginError}
                                 placeholder='Login'
-                                id='user-login'
                                 value={userCard.login}
                                 onChange={this.handleLogin}
+                                size='small'
                             />
-                            <Form.Input
-                                className="add-github"
-                                error={userCard.validation.githubError && { content: 'Please enter a valid GitHub URL', pointing: 'below',size:'mini' }}
-                                fluid
+                            <span
+                                className='error'>{(userCard.validation.loginError) ? "Please enter a valid login name" : ""}
+                            </span>
+                        </div>
+
+                        <div>
+                            <Input
+                                className="input-margin-top-5"
+                                error={userCard.validation.githubError}
                                 placeholder='GitHub URl'
-                                id='user-github'
                                 value={userCard.html_url}
                                 onChange={this.handleGitHubURL}
+                                size='small'
                             />
+                            <span
+                                className='error'>{(userCard.validation.githubError) ? "Please enter a valid GitHub URL" : ""}
+                            </span>
+                        </div>
+                    </Card.Header>
 
+                </Card.Content>
 
-                        </Form>
-                    </div>
-
-                </div>
-                <div className="extra content">
+                <Card.Content extra>
                     <Button.Group>
-
                         <Button onClick={this.onCancelAddUserCard}>Cancel</Button>
                         <Button.Or/>
                         <Button onClick={this.onAddUserCard} primary>Save</Button>
                     </Button.Group>
-                </div>
-            </React.Fragment>
+                </Card.Content>
+            </>
         )
     }
 }

@@ -2,7 +2,7 @@
     margin-top: 15px
 }
 
-.learn-more {
+.load-more {
     text-align: center;
     margin-top: 15px;
     margin-bottom: 15px
@@ -23,12 +23,14 @@
 .user-card-cancel {
     border-left: 1px solid #ddd;
 }
-.error{
+
+.error {
     color: #e07575;
-    font-size: 9px
+    font-size: 11px;
+    font-family: sans-serif;
 }
 
-.add-login,.add-github{
+.input-margin-top-5 {
     margin-top: 5px;
     width: 100%;
 }

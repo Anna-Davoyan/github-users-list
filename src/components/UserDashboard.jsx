@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import UserList from "./UserList";
 import {Button} from "semantic-ui-react";
-import './userCard.css'
+import '../userCard.css'
 
 
 class UserDashboard extends Component {
+
     state = {
         users: [],
         link: 'https://api.github.com/users'
     };
 
     componentDidMount() {
-        this.loadData() 
+        this.loadData()
     }
 
     loadData = () => {
@@ -36,13 +37,12 @@ class UserDashboard extends Component {
                 this.state.users.filter(user => user.id !== item.id)
         })
     };
+
     handleNewUserCard = (user) => {
         this.state.users.unshift(user);
         this.setState({
             users: this.state.users
         });
-
-
     };
 
     handleEditFromForm = (attrs) => {
@@ -72,7 +72,7 @@ class UserDashboard extends Component {
                     onFormEditUser={this.handleEditFromForm}
                     addUserCard={this.handleNewUserCard}
                 />
-                <div className='learn-more'>
+                <div className='load-more'>
                     <Button primary onClick={this.handleLoadMoreButtonClick}> Load More </Button>
                 </div>
             </div>
