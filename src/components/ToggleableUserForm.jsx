@@ -29,10 +29,10 @@ class ToggleableUserForm extends Component {
                 <Button
                     className='add-button'
                     basic
-                    color='primary'
+                    primary
                     onClick={this.handleOpenForm}
                     >
-                    <Icon name='plus' size='large'/>
+                    <Icon name='plus'  size='large'/>
                 </Button>
             )
         }
